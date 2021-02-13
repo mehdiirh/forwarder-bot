@@ -36,7 +36,7 @@ print("FORWARDER BOT STARTED ;)")
 async def forwarder(message: Message):
     chat_id = message.chat_id
 
-    if chat_id not in data_manager.channels:
+    if str(chat_id) not in data_manager.channels:
         sender: User = await message.get_sender()
         if sender.username not in data_manager.channels:
             return
