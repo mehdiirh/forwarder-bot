@@ -1,8 +1,6 @@
 # Telegram Forwarder Bot
 Telegram Channel Posts Forwarder Bot Based On Words !
 
-### This Product Is Not Debugged 
-
 
 1) Create an isolated virtual environment using:
 ```
