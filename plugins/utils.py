@@ -33,6 +33,8 @@ class Data:
             if value not in data_of_key:
                 value = [value]
                 value += data_of_key
+            else:
+                raise ValueError('مقدار {value} از قبل وجود دارد'.format(value=value))
 
         data[key] = value
         self.replace_file_data(data)
@@ -46,6 +48,8 @@ class Data:
                 data_of_key = list(filter(lambda el: el != value, data_of_key))
                 data[key] = data_of_key
                 self.replace_file_data(data)
+            else:
+                raise ValueError('مقدار {value} وجود ندارد'.format(value=value))
 
     @property
     def channels(self) -> list:
