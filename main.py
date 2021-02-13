@@ -71,10 +71,21 @@ async def add_remove_channels(message: Message):
     channel_id = str(channel.id)
 
     if action == 'add':
-        data_manager.add_to_file('channels', channel_id)
+        try:
+            data_manager.add_to_file('channels', channel_id)
+        except ValueError as e:
+            await message.edit(e)
+            return
+
         await message.edit("کانال `%s` اضافه شد" % channel_id)
+        
     elif action == 'remove':
-        data_manager.remove_from_file('channels', channel_id)
+        try:
+            data_manager.remove_from_file('channels', channel_id)
+        except ValueError as e:
+            await message.edit(e)
+            return
+
         await message.edit("کانال `%s` حذف شد" % channel_id)
 
 
@@ -91,11 +102,22 @@ async def add_remove_words(message: Message):
     word = match.group(2)
 
     if action == 'addword':
-        data_manager.add_to_file('words', word)
+        try:
+            data_manager.add_to_file('words', word)
+        except ValueError as e:
+            await message.edit(e)
+            return
+
         await message.edit("کلمه [`%s`] اضافه شد" % word)
+
     elif action == 'rmword':
-        data_manager.remove_from_file('words', word)
-        await message.edit("کلمه [`%s`] حذف شد" % word)
+        try:
+            data_manager.remove_from_file('words', word)
+        except ValueError as e:
+            await message.edit(e)
+            return
+
+    await message.edit("کلمه [`%s`] حذف شد" % word)
 
 
 client.run_until_disconnected()
