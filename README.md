@@ -12,7 +12,7 @@ Telegram Channel Posts Forwarder Bot
 
 4) Change data manually from :: ~/plugins/jsons/data.json
 
-5) run main.py
+5) run
 `./main.py`
 or 
 `python main.py`
