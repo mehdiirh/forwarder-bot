@@ -66,13 +66,16 @@ async def add_remove_channels(message: Message):
         channel = await client.get_entity(channel)
     except:
         await message.edit('یوزرنیم وجود ندارد')
+        return
 
     channel_id = str(channel.id)
 
     if action == 'add':
         data_manager.add_to_file('channels', channel_id)
+        await message.edit("کانال `%s` اضافه شد" % channel_id)
     elif action == 'remove':
         data_manager.remove_from_file('channels', channel_id)
+        await message.edit("کانال `%s` حذف شد" % channel_id)
 
 
 @client.on(events.NewMessage(outgoing=True, pattern=r'.(?:addword|rmword) (.+)'))
@@ -89,8 +92,10 @@ async def add_remove_words(message: Message):
 
     if action == 'addword':
         data_manager.add_to_file('words', word)
+        await message.edit("کلمه [`%s`] اضافه شد" % word)
     elif action == 'rmword':
         data_manager.remove_from_file('words', word)
+        await message.edit("کلمه [`%s`] حذف شد" % word)
 
 
 client.run_until_disconnected()
