@@ -46,10 +46,10 @@ async def forwarder(message: Message):
     if not any(word in msg for word in data_manager.words):
         return
 
-    await client.forward_messages(data_manager.group_id, message)
+    await client.forward_messages(data_manager.group_id, message.message)
 
 
-@client.on(events.NewMessage(outgoing=True, pattern=r'.(?:add|remove) ([1-9a-zA-Z][a-zA-Z0-9_]{4,})'))
+@client.on(events.NewMessage(outgoing=True, pattern=r'.(?:add|remove) @?([1-9a-zA-Z][a-zA-Z0-9_]{4,})'))
 async def add_remove_channels(message: Message):
     msg: str = message.raw_text
     msg = msg.replace('@', '')
@@ -68,22 +68,22 @@ async def add_remove_channels(message: Message):
         await message.edit('یوزرنیم وجود ندارد')
         return
 
-    channel_id = str(channel.id)
+    channel_id = '-100' + str(channel.id)
 
     if action == 'add':
         try:
             data_manager.add_to_file('channels', channel_id)
         except ValueError as e:
-            await message.edit(e)
+            await message.edit(e.args[0])
             return
 
         await message.edit("کانال `%s` اضافه شد" % channel_id)
-        
+
     elif action == 'remove':
         try:
             data_manager.remove_from_file('channels', channel_id)
         except ValueError as e:
-            await message.edit(e)
+            await message.edit(e.args[0])
             return
 
         await message.edit("کانال `%s` حذف شد" % channel_id)
@@ -105,7 +105,7 @@ async def add_remove_words(message: Message):
         try:
             data_manager.add_to_file('words', word)
         except ValueError as e:
-            await message.edit(e)
+            await message.edit(e.args[0])
             return
 
         await message.edit("کلمه [`%s`] اضافه شد" % word)
@@ -114,10 +114,25 @@ async def add_remove_words(message: Message):
         try:
             data_manager.remove_from_file('words', word)
         except ValueError as e:
-            await message.edit(e)
+            await message.edit(e.args[0])
             return
 
-    await message.edit("کلمه [`%s`] حذف شد" % word)
+        await message.edit("کلمه [`%s`] حذف شد" % word)
 
+
+@client.on(events.NewMessage(outgoing=True, pattern=r'.((?:words|chlist))'))
+async def stats(message: Message):
+
+    pattern = re.compile(r'.((?:words|chlist))')
+    match = pattern.match(message.raw_text)
+
+    action = match.group(1).lower()
+
+    if action == 'words':
+        text = "\n".join(data_manager.words)
+        await message.edit(f'**WORDS:**\n\n{text}')
+    elif action == 'chlist':
+        text = "\n".join(data_manager.channels)
+        await message.edit(f'**CHANNELS:**\n\n{text}')
 
 client.run_until_disconnected()
