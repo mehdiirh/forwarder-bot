@@ -34,7 +34,7 @@ class Data:
                 value = [value]
                 value += data_of_key
             else:
-                raise ValueError('مقدار {value} از قبل وجود دارد'.format(value=value))
+                raise ValueError('مقدار `{value}` از قبل وجود دارد'.format(value=value))
 
         data[key] = value
         self.replace_file_data(data)
@@ -49,7 +49,7 @@ class Data:
                 data[key] = data_of_key
                 self.replace_file_data(data)
             else:
-                raise ValueError('مقدار {value} وجود ندارد'.format(value=value))
+                raise ValueError('مقدار `{value}` وجود ندارد'.format(value=value))
 
     @property
     def channels(self) -> list:
