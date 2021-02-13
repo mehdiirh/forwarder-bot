@@ -1,6 +1,5 @@
 import json
 import os
-from time import sleep
 
 this_dir = os.path.dirname(os.path.realpath(__file__))
 data_file = os.path.join(this_dir, 'jsons/data.json')
