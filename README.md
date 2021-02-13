@@ -25,4 +25,4 @@ or
 
 ----
 
-* Contact:* @iSANDSTORM 
+* Contact: (@iSANDSTORM)[https://t.me/iSANDSTORM]
