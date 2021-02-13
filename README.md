@@ -1,5 +1,5 @@
-# forwarder-bot
-Telegram Channel Posts Forwarder Bot
+# Telegram Forwarder Bot
+Telegram Channel Posts Forwarder Bot Based On Words !
 
 ### This Product Is Not Debugged 
 
