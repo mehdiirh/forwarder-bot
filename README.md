@@ -1,6 +1,9 @@
 # forwarder-bot
 Telegram Channel Posts Forwarder Bot
 
+### This Product Is Not Debugged 
+
+
 1) Create an isolated virtual environment using:
 ```
 python -m venv venv
@@ -29,7 +32,6 @@ python main.py
 
 *- Change data from :: `~/plugins/jsons/data.json` and add group or channel id in `group_id`. this ID is the channel/group which bot will send messages to it*
 
-### This Product Is Not Debugged 
 
 ----
 
