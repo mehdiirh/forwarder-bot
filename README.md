@@ -22,3 +22,7 @@ or
 *- Change data from :: `~/plugins/jsons/data.json` and add group or channel id in `group_id`. this ID is the channel/group which bot will send messages to it*
 
 ** This Product Is Not Debugged **
+
+----
+
+_ Contact: @iSANDSTORM _
