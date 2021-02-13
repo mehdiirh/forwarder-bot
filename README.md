@@ -10,11 +10,12 @@ Telegram Channel Posts Forwarder Bot
 
 3) add your API_ID and API_HASH to ~/Login.py
 
-4) Change data manually from :: ~/plugins/jsons/data.json
-
-5) run
+4) run
 `./main.py`
 or 
 `python main.py`
 
-6) Enter your credential and login
+5) Enter your credential and login
+
+
+*- Change data from :: `~/plugins/jsons/data.json` and add group or channel id in `group_id`*
